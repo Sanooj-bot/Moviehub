@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Failed</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/narrow-jumbotron.css' %}" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Payment Failed!</h3>
+      </div>
+
+     </body>
+</html>

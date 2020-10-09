@@ -4,14 +4,18 @@ import threading
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from Hub.forms import SignUpForm, User_Form, Movie_form
-from Hub.models import User, Movies
+from Hub.forms import SignUpForm, User_Form, Movie_form, Booking_Form
+from Hub.models import User, Movies, Booking
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.http import HttpResponse,HttpResponseRedirect
-from django.views.generic import DetailView
 from Hub.decorators import unauthenticated_user, admin_user
 from Hub.filters import UserFilter, MovieFilter
+from django.http import JsonResponse
+from django.urls import reverse
+import stripe
+from django.views.decorators.csrf import csrf_exempt
+stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
 class EmailThreding(threading.Thread):
     def __init__(self, email):
@@ -89,7 +93,8 @@ def logout_view(request):
 
 def movie_detail(request, id):
     context = {}
-    context["data"] = Movies.objects.get( id = id )
+    data = Movies.objects.get( id = id )
+    context = {'data':data}
     return render(request, "MovieDetail.html", context)
 
 @admin_user
@@ -130,3 +135,42 @@ def movie_update(request, pk):
     return render(request, "MovieUpdate.html", context)  
     
 
+def thanks(request):
+    return render(request, 'thanks.html')
+
+@csrf_exempt
+def checkout(request):
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        line_items=[{
+            'price': 'price_1HYqj9DhYPfk6E3241lev41V',
+            'quantity': 1,
+        }],
+        mode='payment',
+        success_url=request.build_absolute_uri(reverse('thanks')) + '?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url=request.build_absolute_uri(reverse('failed')),
+    )
+
+    return JsonResponse({
+        'session_id' : session.id,
+        'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
+    })
+
+def failed(request):
+    return render(request, 'failed.html')
+@admin_user
+def movie_delete(request, pk):
+    data = Movies.objects.get(id = pk)
+    if request.method =="POST":
+        data.delete() 
+        return HttpResponseRedirect("movielist")
+    context ={}  
+    return render(request, "MovieDelete.html", context)
+@admin_user
+def user_delete(request, pk):
+    data = User.objects.get(id = pk)
+    if request.method == "POST":
+        data.delete() 
+        return HttpResponseRedirect("userlist")
+    context ={}  
+    return render(request, "UserDelete.html", context)

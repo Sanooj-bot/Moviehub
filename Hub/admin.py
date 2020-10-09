@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from Hub.models import User,Movies
+from Hub.models import User, Movies, Booking 
 
 class UserAdmins(UserAdmin):
     list_display = ('email','username','first_name','last_name','phone','date_joined','last_login','is_admin','is_staff')
@@ -11,3 +11,4 @@ class UserAdmins(UserAdmin):
     fieldsets = ()
 admin.site.register(User,UserAdmins)
 admin.site.register(Movies)
+admin.site.register(Booking)

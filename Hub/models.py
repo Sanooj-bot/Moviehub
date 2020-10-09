@@ -72,3 +72,67 @@ class User(AbstractBaseUser):
         return self.is_admin
     def has_module_perms(self,app_lebel):
         return True
+class Booking(models.Model):
+    Customer_Name  = models.ForeignKey(User, null = True, on_delete = models.SET_NULL ,blank= True)
+    Movie_Name = models.ForeignKey(Movies, null=True,on_delete = models.SET_NULL, blank= True)
+    A1 = models.BooleanField(default = False)
+    A2 = models.BooleanField(default = False)
+    A3 = models.BooleanField(default = False)
+    A4 = models.BooleanField(default = False)
+    A5 = models.BooleanField(default = False)
+
+    B1 = models.BooleanField(default = False)
+    B2 = models.BooleanField(default = False)
+    B3 = models.BooleanField(default = False)
+    B4 = models.BooleanField(default = False)
+    B5 = models.BooleanField(default = False)
+
+    C1 = models.BooleanField(default = False)
+    C2 = models.BooleanField(default = False)
+    C3 = models.BooleanField(default = False)
+    C4 = models.BooleanField(default = False)
+    C5 = models.BooleanField(default = False)
+
+    D1 = models.BooleanField(default = False)
+    D2 = models.BooleanField(default = False)
+    D3 = models.BooleanField(default = False)
+    D4 = models.BooleanField(default = False)
+    D5 = models.BooleanField(default = False)
+
+    E1 = models.BooleanField(default = False)
+    E2 = models.BooleanField(default = False)
+    E3 = models.BooleanField(default = False)
+    E4 = models.BooleanField(default = False)
+    E5 = models.BooleanField(default = False)
+
+    F1 = models.BooleanField(default = False)
+    F2 = models.BooleanField(default = False)
+    F3 = models.BooleanField(default = False)
+    F4 = models.BooleanField(default = False)
+    F5 = models.BooleanField(default = False)
+
+    G1 = models.BooleanField(default = False)
+    G2 = models.BooleanField(default = False)
+    G3 = models.BooleanField(default = False)
+    G4 = models.BooleanField(default = False)
+    G5 = models.BooleanField(default = False)
+
+    H1 = models.BooleanField(default = False)
+    H2 = models.BooleanField(default = False)
+    H3 = models.BooleanField(default = False)
+    H4 = models.BooleanField(default = False)
+    H5 = models.BooleanField(default = False)
+
+    I1 = models.BooleanField(default = False)
+    I2 = models.BooleanField(default = False)
+    I3 = models.BooleanField(default = False)
+    I4 = models.BooleanField(default = False)
+    I5 = models.BooleanField(default = False)
+
+    J1 = models.BooleanField(default = False)
+    J2 = models.BooleanField(default = False)
+    J3 = models.BooleanField(default = False)
+    J4 = models.BooleanField(default = False)
+    J5 = models.BooleanField(default = False)
+
+   

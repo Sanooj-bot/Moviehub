@@ -7,10 +7,19 @@
           border: none;
         border-bottom: 1px solid yellow;
         border-radius: 0;
-    }
+}
+          
   </style>
 
-    <script>
+    <script>    
+          function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+              x.type = "text";
+            } else {
+              x.type = "password";
+            }
+          }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -31,21 +40,21 @@
           <div class="form-row ">
             <input type="email" name="email" id="materialLoginFormEmail" class="form-control mb-2 mr-sm-2" placeholder="Email">
           </div>
-          <div class="form-row">
-            <input type="password" name="password" id="materialLoginFormPassword" class="form-control mb-2 mr-sm-2" placeholder="Password">
+          <div class="form-row ">
+            <input type="password" name="password" id="myInput" class="form-control mb-2 mr-sm-2" placeholder="Password">
           </div>
           <div class="d-flex justify-content-around">
           <div>
           <!-- Remember me -->
             <div class="form-group form-check">
 					<label class="form-check-label">
-						<input type="checkbox" name="rebmr" class="form-check-input mb-2">Remember Me
+						<input type="checkbox" name="rebmr" class="form-check-input mb-2" onclick="myFunction()">Show Password
 					</label>
 				</div>
           </div>
           <div>
           <!-- Forgot password -->
-          <a href="" class="p-2">Forgot password?</a>
+          <a href="{% url 'reset_password' %}" class="p-2">Forgot password?</a>
           </div>
       </div>
       <div class="g-recaptcha" data-sitekey="6Lfwm9EZAAAAADgohxngesuUVLHejuf5NZ20-kGi"</div>
@@ -64,13 +73,13 @@
       <div class="text-center">
           <p>Don't have an Account?<a href="{% url 'signup' %}" class="p-2">SIGN UP</a></p>
           <p>or</p><p> Login with: </p>
-          <a type="button" class="btn-floating btn-fb btn-sm">
+          <a type="button" class="btn-floating btn-fb btn-sm" href ="{% url 'social:begin' 'facebook' %}">
                   <i class="fa fa-facebook-official" style="font-size:20px;"></i>
                 </a>
-                <a type="button" class="btn-floating btn-tw btn-sm">
+                <a type="button" class="btn-floating btn-tw btn-sm" href ="{% url 'social:begin' 'twitter' %}">
                     <i class="fa fa-twitter" style="font-size:20px;"></i>
                 </a>
-                <a type="button" class="btn-floating btn-tw btn-sm">
+                <a type="button" class="btn-floating btn-tw btn-sm" >
                   <i class="fa fa-google" style="font-size:20px;"></i>
                 </a>
         </div>

@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Hub',
-    'django_filters'
+    'django_filters',
+    'social_django',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -49,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'MovieV1.urls'
@@ -64,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -102,6 +108,22 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home'
+
+SOCIAL_AUTH_TWITTER_KEY = 'XFmvMNaqc1DeahXXqdkeMrhMo'
+SOCIAL_AUTH_TWITTER_SECRET = 'cUJYAKlof6YkJCt6WviUcQwSKm9BgEtmhPeApARumazdMr8j73'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '767650507130814'
+SOCIAL_AUTH_FACEBOOK_SECRET = '0c2796774475d0aba7a0d1e529712de7'
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -126,6 +148,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 AUTH_USER_MODEL='Hub.User'
 # Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True  
 EMAIL_HOST = 'smtp.gmail.com'  
 EMAIL_PORT = 587  
@@ -137,3 +160,5 @@ EMAIL_HOST_PASSWORD = '8943098729'
 GOOGLE_RECAPTCHA_SECRET_KEY = '6Lfwm9EZAAAAACrZBjCTNxCcZtulfqILDuzOnMxY'
 
 CSRF_COOKIE_DOMAIN = None
+STRIPE_PUBLIC_KEY = 'pk_test_51HX1ZGDhYPfk6E32O6zAWJFoKS1jPluZWkrlrjNxMGTcjbIAfJBKXzH2jgaIr9u7ePFncYIeC37JorQCLKBJFq6i004USf9nuR'
+STRIPE_PRIVATE_KEY = 'sk_test_51HX1ZGDhYPfk6E32YUs80tj1FeCnHISEMSSPIGOG1KQzAIXTOQCbIU5w0JdUE90OBSSqgAZoxxFKFKmcD54gxzRW00ShJ1oM2l'
