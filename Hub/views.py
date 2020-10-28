@@ -174,3 +174,15 @@ def user_delete(request, pk):
         return HttpResponseRedirect("userlist")
     context ={}  
     return render(request, "UserDelete.html", context)
+@csrf_exempt
+def seat_select(request,pk):
+    case = Booking.objects.get(id=4)
+    data = Booking.objects.get(id = pk)
+    form = Booking_Form(instance = data)
+    if request.method == 'POST':
+        form = Booking_Form(request.POST, instance=data)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    context ={'form':form, 'case':case } 
+    return render(request, "seat.html", context)

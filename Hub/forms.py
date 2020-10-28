@@ -28,17 +28,6 @@ class Movie_form(forms.ModelForm):
 
 class Booking_Form(forms.ModelForm):
 
-    A1 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'A1','class':'cust-checkbox'} ))
-    A2 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'A2','class':'cust-checkbox'} ))
-    A3 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'A3','class':'cust-checkbox'} ))
-    A4 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'A4','class':'cust-checkbox'} ))
-    A5 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'A4','class':'cust-checkbox'} ))
-
-    B1 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'B1','class':'cust-checkbox'} ))
-    B2 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'B2','class':'cust-checkbox'} ))
-    B3 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'B3','class':'cust-checkbox'} ))
-    B4 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'B4','class':'cust-checkbox'} ))
-    
     class Meta:
         model = Booking
         fields = ('A1', 'A2', 'A3', 'A4', 'A5', 'B1', 'B2', 'B3', 'B4', 'B5', 'C1', 'C2', 'C3', 'C4', 'C5',

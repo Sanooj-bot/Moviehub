@@ -12,6 +12,7 @@ urlpatterns = [
     path('MovieDetail/<id>', views.movie_detail, name='moviedetail'),
     path('UserList/', views.user_list,name='userlist'),
     path('MovieList/', views.MovieView,name='movielist'),
+    path('seat/<str:pk>/', views.seat_select, name='seat'),
     path('UserUpdate/<str:pk>/', views.user_update, name='userupdate'),
     path('MovieUpdate/<str:pk>/', views.movie_update, name='movieupdate'),
     path('MovieDelete/<str:pk>/', views.movie_delete, name='moviedelete'),
