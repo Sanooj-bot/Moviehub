@@ -272,16 +272,7 @@
                             {{form.J5}}
                         </td>
                     </tr>
-                </table>
-                </form>
-                <div class="screen">
-                    <h2 class="wthree">Screen this way</h2>
-                </div>
-                <button onclick="updateTextArea()" id="show">Confirm Selection</button>
-            </div>
-            <!-- //seat layout -->
-            <!-- details after booking displayed here -->
-            <div class="displayerBoxes txt-center" style="overflow-x:auto;">
+                    <div class="displayerBoxes txt-center" style="overflow-x:auto;">
                 <table class="Displaytable w3ls-table" width="100%">
                     <tr>
                         <th>Name</th>
@@ -290,18 +281,29 @@
                     </tr>
                     <tr>
                         <td>
-                            <textarea id="nameDisplay"></textarea>
+                            <input type="textarea" id="nameDisplay" name = "name">
                         </td>
                         <td>
-                            <textarea id="NumberDisplay"></textarea>
+                            <input type= "textarea" id="NumberDisplay" name = "number">
                         </td>
                         <td>
-                            <textarea id="seatsDisplay"></textarea>
+                            <input type ="textarea" id="seatsDisplay" name = "seats">
                         </td>
                     </tr>
                     
                 </table>
+                </table>
+                </form>
+                <div class="screen">
+                    <h2 class="wthree">Screen this way</h2>
+                </div>
+                
             </div>
+                <button onclick="updateTextArea()" id="show">Confirm Selection</button>
+            </div>
+            <!-- //seat layout -->
+            <!-- details after booking displayed here -->
+            
             <!-- //details after booking displayed here -->
         </div>
     </div>

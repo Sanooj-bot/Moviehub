@@ -4,8 +4,8 @@ import threading
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from Hub.forms import SignUpForm, User_Form, Movie_form, Booking_Form
-from Hub.models import User, Movies, Booking
+from Hub.forms import SignUpForm, User_Form, Movie_form, Booking_Form, Create_Movie
+from Hub.models import User, Movies, Booking, Ticket
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.http import HttpResponse,HttpResponseRedirect
@@ -15,6 +15,7 @@ from django.http import JsonResponse
 from django.urls import reverse
 import stripe
 from django.views.decorators.csrf import csrf_exempt
+import datetime
 stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
 class EmailThreding(threading.Thread):
@@ -163,7 +164,7 @@ def movie_delete(request, pk):
     data = Movies.objects.get(id = pk)
     if request.method =="POST":
         data.delete() 
-        return HttpResponseRedirect("movielist")
+        return redirect("movielist")
     context ={}  
     return render(request, "MovieDelete.html", context)
 @admin_user
@@ -176,13 +177,53 @@ def user_delete(request, pk):
     return render(request, "UserDelete.html", context)
 @csrf_exempt
 def seat_select(request,pk):
-    case = Booking.objects.get(id=4)
+    case = Booking.objects.get(id = pk)
     data = Booking.objects.get(id = pk)
     form = Booking_Form(instance = data)
     if request.method == 'POST':
         form = Booking_Form(request.POST, instance=data)
+        name = request.POST.get('name')
+        number = request.POST.get('number')
+        seats = request.POST.get('seats')
+        p = Ticket.objects.create(Name = name, Number = number, Seats = seats)
+
         if form.is_valid():
             form.save()
             return redirect('home')
     context ={'form':form, 'case':case } 
     return render(request, "seat.html", context)
+def create_movie(request):
+    form = Create_Movie()
+    
+    if request.method == 'POST':
+        form = Create_Movie(request.POST, files=request.FILES)
+        
+        if form.is_valid(): 
+            DOS = form.cleaned_data['date_of_start']
+            DOE = form.cleaned_data['date_of_end']
+            name = form.cleaned_data['moviename']
+            show = DOE - DOS
+            shows = show.days
+            for i in range(shows):
+                DOS += datetime.timedelta(days=1)
+                p = Booking.objects.create(Movie_Name = name, Date_Of_Show = DOS)
+            form.save()
+            return redirect('movielist')
+    context ={'form':form}
+    return render(request, "create_movie.html", context)    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+        
+
+          
+    
+

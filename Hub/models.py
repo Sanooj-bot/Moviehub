@@ -6,6 +6,8 @@ class Movies(models.Model):
     movie_heading = models.CharField(max_length=60)
     movie_review = models.TextField(max_length=500)
     movie_image = models.ImageField(upload_to = 'poster/')
+    date_of_start = models.DateField(null=True,blank=True)
+    date_of_end = models.DateField(null=True,blank=True)
 
     def __str__(self):
         return self.moviename
@@ -73,8 +75,8 @@ class User(AbstractBaseUser):
     def has_module_perms(self,app_lebel):
         return True
 class Booking(models.Model):
-    Customer_Name  = models.ForeignKey(User, null = True, on_delete = models.SET_NULL ,blank= True)
-    Movie_Name = models.ForeignKey(Movies, null=True,on_delete = models.SET_NULL, blank= True)
+    Movie_Name = models.CharField(max_length=25,blank=True)
+    Date_Of_Show = models.DateField(null=True, blank=True)
     A1 = models.BooleanField(default = False)
     A2 = models.BooleanField(default = False)
     A3 = models.BooleanField(default = False)
@@ -135,4 +137,9 @@ class Booking(models.Model):
     J4 = models.BooleanField(default = False)
     J5 = models.BooleanField(default = False)
 
+class Ticket(models.Model):
+    Name = models.CharField(max_length=254)
+    Number = models.IntegerField()
+    Seats = models.CharField(max_length=100)
+    Date = models.DateTimeField(null=True)
    
