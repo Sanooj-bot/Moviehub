@@ -21,6 +21,7 @@ urlpatterns = [
     path('thanks/', views.thanks, name='thanks'),
     path('checkout/', views.checkout, name='checkout'),
     path('failed/', views.failed, name='failed'),
+    path('pay/', views.pay, name='pay'),
     path('oauth/', include('social_django.urls', namespace='social')),
     path('reset_password/',
      auth_views.PasswordResetView.as_view(template_name="password_reset.html"),

@@ -17,6 +17,8 @@ import stripe
 from django.views.decorators.csrf import csrf_exempt
 import datetime
 stripe.api_key = settings.STRIPE_PRIVATE_KEY
+val = None
+thre = None
 
 class EmailThreding(threading.Thread):
     def __init__(self, email):
@@ -93,8 +95,14 @@ def logout_view(request):
     return redirect('login')    
 
 def movie_detail(request, id):
-    context = {}
     data = Movies.objects.get( id = id )
+    if request.method =="POST":
+        date = request.POST.get('date')
+        movie = data.moviename
+        se = Booking.objects.get(Movie_Name = movie, Date_Of_Show = date)
+        return redirect('seat',pk = se.id)
+
+    
     context = {'data':data}
     return render(request, "MovieDetail.html", context)
 
@@ -137,15 +145,19 @@ def movie_update(request, pk):
     
 
 def thanks(request):
-    return render(request, 'thanks.html')
+    s = thre()
+    if s: 
+        return render(request, 'thanks.html')
+    
 
 @csrf_exempt
 def checkout(request):
+    qty = val()
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
             'price': 'price_1HYqj9DhYPfk6E3241lev41V',
-            'quantity': 1,
+            'quantity': qty,
         }],
         mode='payment',
         success_url=request.build_absolute_uri(reverse('thanks')) + '?session_id={CHECKOUT_SESSION_ID}',
@@ -177,7 +189,6 @@ def user_delete(request, pk):
     return render(request, "UserDelete.html", context)
 @csrf_exempt
 def seat_select(request,pk):
-    case = Booking.objects.get(id = pk)
     data = Booking.objects.get(id = pk)
     form = Booking_Form(instance = data)
     if request.method == 'POST':
@@ -185,12 +196,19 @@ def seat_select(request,pk):
         name = request.POST.get('name')
         number = request.POST.get('number')
         seats = request.POST.get('seats')
-        p = Ticket.objects.create(Name = name, Number = number, Seats = seats)
-
+        global val
+        def val():
+            return number
+        
         if form.is_valid():
-            form.save()
-            return redirect('home')
-    context ={'form':form, 'case':case } 
+            global thre
+            def thre():
+                form.save()
+                p = Ticket.objects.create(Name = name, Number = number, Seats = seats)
+                return True
+            return redirect('pay')
+
+    context ={'form':form, } 
     return render(request, "seat.html", context)
 def create_movie(request):
     form = Create_Movie()
@@ -209,8 +227,12 @@ def create_movie(request):
                 p = Booking.objects.create(Movie_Name = name, Date_Of_Show = DOS)
             form.save()
             return redirect('movielist')
-    context ={'form':form}
-    return render(request, "create_movie.html", context)    
+    else:
+        context ={'form':form}
+        return render(request, "create_movie.html", context)  
+
+def pay(request):
+    return render(request, 'pay.html')
     
     
     
