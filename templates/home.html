@@ -5,87 +5,66 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Home</title>
-</head>
+  </head>
   <body> 
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    
-    
-<nav class="navbar navbar-expand-lg navbar-light bg-warning">
-  <a class="navbar-brand" href="#">MOVIEHUB</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-</button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      
-       
-        
-      </li>
-      {% if request.user.is_authenticated %}
-          <a class="nav-link" href="{% url 'logout' %}">LogOut-{{request.user.username}}</a>
-          <a class="nav-link" href="{% url 'password_change' %}">Change Password</a>
-          {% if request.user.is_admin %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'userlist' %}">Users</a>
-            </li>
-            <li class="nav-item">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+      <a class="navbar-brand" href="#">MOVIEHUB</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          {% if request.user.is_authenticated %}
+            <a class="nav-link" href="{% url 'logout' %}">LogOut-{{request.user.username}}</a>
+            <a class="nav-link" href="{% url 'password_change' %}">Change Password</a>
+            {% if request.user.is_admin %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'userlist' %}">Users</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'movielist' %}">Movies</a>
-            </li>
-          {% endif %}
-        {% else %}
+              </li>
+            {% endif %}
+          {% else %}
           <a class="nav-link" href="{% url 'signup' %}">Signup</a>
           <a class="nav-link" href="{% url 'login' %}">Login</a>
-          
-      {% endif %}
-    </ul>
-  </div>
-</nav>
-
-<div class="jumbotron bg-dark">
-  <div class="container text-center">
-    <h1>BOOK YOUR MOVIES NOW</h1>      
-    
-  </div>
-</div>
- 
- 
-  <h3>NOW RUNNING..</h3><br>
-  <div class="row">
-{% for i in images %} 
-  <div class="col-md-3">
-      <a href="MovieDetail/{{i.id}}" > 
-        <img src="{{ i.movie_image.url }}" class="img-responsive mt-2 ml-5" style="width:70%;height:70%">
-      </a> 
+          {% endif %}
+        </ul>
       </div>
+    </nav>
+    <div class="jumbotron bg-dark">
+      <div class="container text-center">
+        <h1>BOOK YOUR MOVIES NOW</h1>      
+      </div>
+    </div>
+    <h3>NOW RUNNING..</h3><br>
+    <div class="row">
+      {% for i in images %} 
+        <div class="col-md-3">
+          <a href="MovieDetail/{{i.id}}" > 
+            <img src="{{ i.movie_image.url }}" class="img-responsive mt-2 ml-5" style="width:70%;height:70%">
+          </a> 
+        </div>
       {% endfor %}
-      </div>
-
- 
-
-<footer class="container-fluid text-center">
-  <div class="container text-center">
-    <a href="#"><i class="fa fa-facebook" style="font-size: 25px;"></i></a>
-    <a href="#"><i class="fa fa-twitter"style="font-size: 25px;"></i></a>
-    <a href="#"><i class="fa fa-instagram" style="font-size: 25px;"></i></a>
-    <a href="#"><i class="fa fa-google-plus" style="font-size: 25px;"></i></a>
-  </div>
-  <p>Copyright © 2010
-All rights reserved. This book or any portion thereof
-may not be reproduced or used in any manner whatsoever
-without the express written permission of the publisher
-except for the use of brief quotations in a book review.</p>
-</footer>
+      <footer class="container-fluid text-center">
+        <div class="container text-center">
+          <a href="#"><i class="fa fa-facebook" style="font-size: 25px;"></i></a>
+          <a href="#"><i class="fa fa-twitter"style="font-size: 25px;"></i></a>
+          <a href="#"><i class="fa fa-instagram" style="font-size: 25px;"></i></a>
+          <a href="#"><i class="fa fa-google-plus" style="font-size: 25px;"></i></a>
+        </div>
+        <p>Copyright © 2010 All rights reserved. This book or any portion thereof may not be reproduced or used in any manner whatsoever
+          without the express written permission of the publisher
+          except for the use of brief quotations in a book review.
+        </p>
+      </footer>
   </body>
 </html>

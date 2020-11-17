@@ -1,20 +1,17 @@
-
+<!DOCTYPE html>
 <html>
-<head>
-</head>
-<body>
-    <form method="POST" enctype="multipart/form-data"> 
-    
-        <!-- Security token -->
-        {% csrf_token %} 
-        {{ form.moviename }}
-        {{ form.movie_heading }}
-        {{ form.movie_review }}
-        {{ form.movie_image }}
-        {{ form.date_of_start }}
-        {{ form.date_of_end }}
-        
-        <input type="submit" value="Submit"> 
-    </form>
-</body> 
+    <head>
+    </head>
+    <body>
+        <form method="POST" enctype="multipart/form-data"> 
+            {% csrf_token %} 
+            {{ form.moviename }}
+            {{ form.movie_heading }}
+            {{ form.movie_review }}
+            {{ form.movie_image }}
+            {{ form.date_of_start }}
+            {{ form.date_of_end }}
+            <input type="submit" value="Submit"> 
+        </form>
+    </body> 
 </html>

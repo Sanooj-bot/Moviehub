@@ -1,57 +1,46 @@
  {% load static %}
 <!DOCTYPE html>
 <html lang="zxx">
+    <head>
+        <title>MovieHub Seat Booking</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta name="keywords" content="Movie Seat Selection a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+        <script>
+            addEventListener("load", function () {
+                setTimeout(hideURLbar, 0);
+            }, false);
 
-<head>
-    <title>MovieHub Seat Booking</title>
-    <!-- Meta-Tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <meta name="keywords" content="Movie Seat Selection a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
-    <script>
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
-    <!-- //Meta-Tags -->
-    <!-- Index-Page-CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
-    <!-- //Custom-Stylesheet-Links -->
-    <!--fonts -->
-    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
-    <!-- //fonts -->
-</head>
-
-<body onload="onLoaderFunc()">
-    <h2>Movie Hub</h2>
-    <div class="container">
-
-        <div class="w3ls-reg">
-            <!-- input fields -->
-            <div class="inputForm">
-                <h3>Select The Number of Seats And Book Your Show</h3>
-                <div class="mr_agilemain">
-                    <div class="agileits-left">
-                        <label> Name
-                            <span>*</span>
-                        </label>
-                        <input type="text" id="Username" required>
-                    </div>
-                    <div class="agileits-right">
-                        <label> Number of Seats
-                            <span>*</span>
-                        </label>
-                        <input type="number" id="Numseats" required min="1">
+            function hideURLbar() {
+                window.scrollTo(0, 1);
+            }
+        </script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all"> 
+        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+    </head>
+    <body onload="onLoaderFunc()">
+        <h2>Movie Hub</h2>
+        <div class="container">
+            <div class="w3ls-reg">
+                <div class="inputForm">
+                    <h3>Select The Number of Seats And Book Your Show</h3>
+                    <div class="mr_agilemain">
+                        <div class="agileits-left">
+                            <label> Name
+                                <span>*</span>
+                            </label>
+                            <input type="text" id="Username" required>
+                        </div>
+                        <div class="agileits-right">
+                            <label> Number of Seats
+                                <span>*</span>
+                            </label>
+                            <input type="number" id="Numseats" required min="1">
+                        </div>
                     </div>
                 </div>
                 <button onclick="takeData()">Start Selecting</button>
             </div>
-            <!-- //input fields -->
-            <!-- seat availabilty list -->
             <ul class="seat_w3ls">
                 <li class="smallBox greenBox">Selected Seat</li>
 
@@ -59,8 +48,6 @@
 
                 <li class="smallBox emptyBox">Empty Seat</li>
             </ul>
-            <!-- seat availabilty list -->
-            <!-- seat layout -->
             <div class="seatStructure txt-center" style="overflow-x:auto;">
                 <table id="seatsBlock">
                     <p id="notification"></p>
@@ -73,356 +60,316 @@
                         <td>5</td>
                     </tr>
                     <form method="POST" enctype="multipart/form-data" id = "form1">
-                    {% csrf_token %}
-                    <tr>
-                        <td>A</td>
-                        <td>
-                            {{form.A1}}
-                        </td>
-                        <td>
-                            {{form.A2}}
-                        </td>
-                        <td>
-                            {{form.A3}}
-                        </td>
-                        <td>
-                            {{form.A4}}
-                        </td>
-                        <td>
-                            {{form.A5}}
-                        </td>
-                        
-                    </tr>
+                        {% csrf_token %}
+                        <tr>
+                            <td>A</td>
+                            <td>
+                                {{form.A1}}
+                            </td>
+                            <td>
+                                {{form.A2}}
+                            </td>
+                            <td>
+                                {{form.A3}}
+                            </td>
+                            <td>
+                                {{form.A4}}
+                            </td>
+                            <td>
+                                {{form.A5}}
+                            </td>
+                            
+                        </tr>
 
-                    <tr>
-                        <td>B</td>
-                        <td>
-                            {{form.B1}}
-                        </td>
-                        <td>
-                            {{form.B2}}
-                        </td>
-                        <td>
-                            {{form.B3}}
-                        </td>
-                        <td>
-                            {{form.B4}}
-                        </td>
-                        <td>
-                            {{form.B5}}
-                        </td>
-                        
-                    </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>
+                                {{form.B1}}
+                            </td>
+                            <td>
+                                {{form.B2}}
+                            </td>
+                            <td>
+                                {{form.B3}}
+                            </td>
+                            <td>
+                                {{form.B4}}
+                            </td>
+                            <td>
+                                {{form.B5}}
+                            </td>
+                            
+                        </tr>
 
-                    <tr>
-                        <td>C</td>
-                        <td>
-                            {{form.C1}}
-                        </td>
-                        <td>
-                            {{form.C2}}
-                        </td>
-                        <td>
-                            {{form.C3}}
-                        </td>
-                        <td>
-                            {{form.C4}}
-                        </td>
-                        <td>
-                            {{form.C5}}
-                        </td>
-                        
-                    </tr>
+                        <tr>
+                            <td>C</td>
+                            <td>
+                                {{form.C1}}
+                            </td>
+                            <td>
+                                {{form.C2}}
+                            </td>
+                            <td>
+                                {{form.C3}}
+                            </td>
+                            <td>
+                                {{form.C4}}
+                            </td>
+                            <td>
+                                {{form.C5}}
+                            </td>
+                            
+                        </tr>
 
-                    <tr>
-                        <td>D</td>
-                        <td>
-                            {{form.D1}}
-                        </td>
-                        <td>
-                            {{form.D2}}
-                        </td>
-                        <td>
-                            {{form.D3}}
-                        </td>
-                        <td>
-                            {{form.D4}}
-                        </td>
-                        <td>
-                            {{form.D5}}
-                        </td>
-                        
-                    </tr>
+                        <tr>
+                            <td>D</td>
+                            <td>
+                                {{form.D1}}
+                            </td>
+                            <td>
+                                {{form.D2}}
+                            </td>
+                            <td>
+                                {{form.D3}}
+                            </td>
+                            <td>
+                                {{form.D4}}
+                            </td>
+                            <td>
+                                {{form.D5}}
+                            </td>
+                            
+                        </tr>
 
-                    <tr>
-                        <td>E</td>
-                        <td>
-                            {{form.E1}}
-                        </td>
-                        <td>
-                            {{form.E2}}
-                        </td>
-                        <td>
-                            {{form.E3}}
-                        </td>
-                        <td>
-                            {{form.E4}}
-                        </td>
-                        <td>
-                            {{form.E5}}
-                        </td>
-                        
-                    </tr>
+                        <tr>
+                            <td>E</td>
+                            <td>
+                                {{form.E1}}
+                            </td>
+                            <td>
+                                {{form.E2}}
+                            </td>
+                            <td>
+                                {{form.E3}}
+                            </td>
+                            <td>
+                                {{form.E4}}
+                            </td>
+                            <td>
+                                {{form.E5}}
+                            </td>
+                            
+                        </tr>
 
-                    <tr class="seatVGap"></tr>
+                        <tr class="seatVGap"></tr>
 
-                    <tr>
-                        <td>F</td>
-                        <td>
-                            {{form.F1}}
-                        </td>
-                        <td>
-                            {{form.E2}}
-                        </td>
-                        <td>
-                            {{form.E3}}
-                        </td>
-                        <td>
-                            {{form.E4}}
-                        </td>
-                        <td>
-                            {{form.E5}}
-                        </td>
-                        
-                    </tr>
+                        <tr>
+                            <td>F</td>
+                            <td>
+                                {{form.F1}}
+                            </td>
+                            <td>
+                                {{form.E2}}
+                            </td>
+                            <td>
+                                {{form.E3}}
+                            </td>
+                            <td>
+                                {{form.E4}}
+                            </td>
+                            <td>
+                                {{form.E5}}
+                            </td>
+                            
+                        </tr>
 
-                    <tr>
-                        <td>G</td>
-                        <td>
-                            {{form.G1}}
-                        </td>
-                        <td>
-                            {{form.G2}}
-                        </td>
-                        <td>
-                            {{form.G3}}
-                        </td>
-                        <td>
-                            {{form.G4}}
-                        </td>
-                        <td>
-                            {{form.G5}}
-                        </td>
-                        
-                    </tr>
+                        <tr>
+                            <td>G</td>
+                            <td>
+                                {{form.G1}}
+                            </td>
+                            <td>
+                                {{form.G2}}
+                            </td>
+                            <td>
+                                {{form.G3}}
+                            </td>
+                            <td>
+                                {{form.G4}}
+                            </td>
+                            <td>
+                                {{form.G5}}
+                            </td>
+                            
+                        </tr>
 
-                    <tr>
-                        <td>H</td>
-                        <td>
-                            {{form.H1}}
-                        </td>
-                        <td>
-                            {{form.H2}}
-                        </td>
-                        <td>
-                            {{form.H3}}
-                        </td>
-                        <td>
-                            {{form.H4}}
-                        </td>
-                        <td>
-                            {{form.H5}}
-                        </td>
+                        <tr>
+                            <td>H</td>
+                            <td>
+                                {{form.H1}}
+                            </td>
+                            <td>
+                                {{form.H2}}
+                            </td>
+                            <td>
+                                {{form.H3}}
+                            </td>
+                            <td>
+                                {{form.H4}}
+                            </td>
+                            <td>
+                                {{form.H5}}
+                            </td>
 
 
-                    <tr>
-                        <td>I</td>
-                        <td>
-                            {{form.I1}}
-                        </td>
-                        <td>
-                            {{form.I2}}
-                        </td>
-                        <td>
-                            {{form.I3}}
-                        </td>
-                        <td>
-                            {{form.I4}}
-                        </td>
-                        <td>
-                            {{form.I5}}
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>I</td>
+                            <td>
+                                {{form.I1}}
+                            </td>
+                            <td>
+                                {{form.I2}}
+                            </td>
+                            <td>
+                                {{form.I3}}
+                            </td>
+                            <td>
+                                {{form.I4}}
+                            </td>
+                            <td>
+                                {{form.I5}}
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <td>J</td>
-                        <td>
-                            {{form.J1}}
-                        </td>
-                        <td>
-                            {{form.J2}}
-                        </td>
-                        <td>
-                            {{form.J3}}
-                        </td>
-                        <td>
-                            {{form.J4}}
-                        </td>
-                        <td>
-                            {{form.J5}}
-                        </td>
-                    </tr>
-                    <div class="displayerBoxes txt-center" style="overflow-x:auto;">
-                <table class="Displaytable w3ls-table" width="100%">
-                    <tr>
-                        <th>Name</th>
-                        <th>Number of Seats</th>
-                        <th>Seats</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="textarea" id="nameDisplay" name = "name">
-                        </td>
-                        <td>
-                            <input type= "textarea" id="NumberDisplay" name = "number">
-                        </td>
-                        <td>
-                            <input type ="textarea" id="seatsDisplay" name = "seats">
-                        </td>
-                    </tr>
-                    
+                        <tr>
+                            <td>J</td>
+                            <td>
+                                {{form.J1}}
+                            </td>
+                            <td>
+                                {{form.J2}}
+                            </td>
+                            <td>
+                                {{form.J3}}
+                            </td>
+                            <td>
+                                {{form.J4}}
+                            </td>
+                            <td>
+                                {{form.J5}}
+                            </td>
+                        </tr>
+                        <div class="displayerBoxes txt-center" style="overflow-x:auto;">
+                            <table class="Displaytable w3ls-table" width="100%">
+                            <tr>
+                                <th>Name</th>
+                                <th>Number of Seats</th>
+                                <th>Seats</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="textarea" id="nameDisplay" name = "name">
+                                </td>
+                                <td>
+                                    <input type= "textarea" id="NumberDisplay" name = "number">
+                                </td>
+                                <td>
+                                    <input type ="textarea" id="seatsDisplay" name = "seats">
+                                </td>
+                            </tr>
+                            </table>
+                        </div>
+                    </form>
                 </table>
-                </table>
-                </form>
                 <div class="screen">
                     <h2 class="wthree">Screen this way</h2>
                 </div>
                 
             </div>
-                <button onclick="updateTextArea()" id="show">Confirm Selection</button>
-            </div>
-            <!-- //seat layout -->
-            <!-- details after booking displayed here -->
-            
-            <!-- //details after booking displayed here -->
+            <button onclick="updateTextArea()" id="show">Confirm Selection</button>
         </div>
-    </div>
-    <button type="submit" form="form1" value="Submit" onclick="enable()" id="sub">Submit</button>
-      
-    <div class="copy-wthree">
-        <p>© 2018 Movie Seat Selection . All Rights Reserved | Design by
-            <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
-        </p>
-    </div>
-    <!-- js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- //js -->
-    <!-- script for seat selection -->
-    <script>
-        $("#show").click(function(){
-            $("#sub").show();
-        });
-        function onLoaderFunc() {
-            $(".seatStructure *").prop("disabled", true);
-            $(".displayerBoxes *").prop("disabled", true);
-            $("#sub").hide();
-        }
-
-        function takeData() {
-            if (($("#Username").val().length == 0) || ($("#Numseats").val().length == 0)) {
-                alert("Please Enter your Name and Number of Seats");
-            } else {
-                $(".inputForm *").prop("disabled", true);
-                $(".seatStructure *").prop("disabled", false);
-                $("input:checked").prop("disabled", true);
-                document.getElementById("notification").innerHTML =
-                    "<b style='margin-bottom:0px;background:#ff9800;letter-spacing:1px;'>Please Select your Seats NOW!</b>";
-            }
-        }
-
-        function updateTextArea() {
-
-        	var Seats = $("input:disabled").length + parseInt($("#Numseats").val());
-        	Seats = Seats-2;
-
-            if (($("input:checked").length) == Seats) {
-                
-
-                var allNameVals = [];
-                var allNumberVals = [];
-                var allSeatsVals = [];
-                var allSeatDis = [];
-
-                //Storing in Array
-                allNameVals.push($("#Username").val());
-                allNumberVals.push($("#Numseats").val());
-                $('#seatsBlock :checked').each(function () {
-                    allSeatsVals.push($(this).val());
-                });
-                $('#seatsBlock :disabled').each(function () {
-                    allSeatDis.push($(this).val());
-                });
-                for (i = 0; i < ($("input:checked").length); i++){
-                	for (j = 0; j < ($("input:disabled").length); j++){
-
-                		if(allSeatsVals[i] == allSeatDis[j]){
-                			allSeatsVals.splice(i,i+1);
-                		}
-                	}
-                }
+        <button type="submit" form="form1" value="Submit" onclick="enable()" id="sub">Submit</button>
+        <div class="copy-wthree">
+            <p>© 2018 Movie Seat Selection . All Rights Reserved | Design by
+                <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+            </p>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $("#show").click(function(){
+                $("#sub").show();
+            });
+            function onLoaderFunc() {
                 $(".seatStructure *").prop("disabled", true);
-
-                //Displaying 
-                $('#nameDisplay').val(allNameVals);
-                $('#NumberDisplay').val(allNumberVals);
-                $('#seatsDisplay').val(allSeatsVals);
-            } else {
-                alert("Please select " + ($("#Numseats").val()) + " seats");
+                $(".displayerBoxes *").prop("disabled", true);
+                $("#sub").hide();
             }
-
-            
-        }
-
-
-        function myFunction() {
-            alert($("input:checked").length);
-        }
-
-        /*
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
+            function takeData() {
+                if (($("#Username").val().length == 0) || ($("#Numseats").val().length == 0)) {
+                    alert("Please Enter your Name and Number of Seats");
+                } else {
+                    $(".inputForm *").prop("disabled", true);
+                    $(".seatStructure *").prop("disabled", false);
+                    $("input:checked").prop("disabled", true);
+                    document.getElementById("notification").innerHTML =
+                        "<b style='margin-bottom:0px;background:#ff9800;letter-spacing:1px;'>Please Select your Seats NOW!</b>";
                 }
             }
-            return "";
-        }
-        */
-        $(":checkbox").click(function () {
-            if (($("input:checked").length) == Seats) {
-                alert("hai");
-                $(":checkbox").prop('disabled', true);
-                $(':checked').prop('disabled', false);
-            } else {
-                $(":checkbox").prop('disabled', false);
+            function updateTextArea() {
+
+                var Seats = $("input:disabled").length + parseInt($("#Numseats").val());
+                Seats = Seats-2;
+
+                if (($("input:checked").length) == Seats) {
+                    var allNameVals = [];
+                    var allNumberVals = [];
+                    var allSeatsVals = [];
+                    var allSeatDis = [];
+
+                    //Storing in Array
+                    allNameVals.push($("#Username").val());
+                    allNumberVals.push($("#Numseats").val());
+                    $('#seatsBlock :checked').each(function () {
+                        allSeatsVals.push($(this).val());
+                    });
+                    $('#seatsBlock :disabled').each(function () {
+                        allSeatDis.push($(this).val());
+                    });
+                    for (i = 0; i < ($("input:checked").length); i++){
+                        for (j = 0; j < ($("input:disabled").length); j++){
+
+                            if(allSeatsVals[i] == allSeatDis[j]){
+                                allSeatsVals.splice(i,i+1);
+                            }
+                        }
+                    }
+                    $(".seatStructure *").prop("disabled", true);
+
+                    //Displaying 
+                    $('#nameDisplay').val(allNameVals);
+                    $('#NumberDisplay').val(allNumberVals);
+                    $('#seatsDisplay').val(allSeatsVals);
+                } else {
+                    alert("Please select " + ($("#Numseats").val()) + " seats");
+                }    
             }
-        });
-        function enable() {
-            $("input:checked").prop("disabled", false);
-            $(".seatStructure *").prop("disabled", false);
-            $(".displayerBoxes *").prop("disabled", false);
-        }
-
-        
-    </script>
-    <!-- //script for seat selection -->
-
-</body>
-
+            function myFunction() {
+                alert($("input:checked").length);
+            }
+            $(":checkbox").click(function () {
+                if (($("input:checked").length) == Seats) {
+                    alert("hai");
+                    $(":checkbox").prop('disabled', true);
+                    $(':checked').prop('disabled', false);
+                } else {
+                    $(":checkbox").prop('disabled', false);
+                }
+            });
+            function enable() {
+                $("input:checked").prop("disabled", false);
+                $(".seatStructure *").prop("disabled", false);
+                $(".displayerBoxes *").prop("disabled", false);
+            }
+        </script>
+    </body>
 </html>
