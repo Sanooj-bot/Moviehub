@@ -2,6 +2,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 
+# Decorator for allowing Authenticated User only
 def unauthenticated_user(view_func):
 	def wrapper_func(request, *args, **kwargs):
 		if request.user.is_authenticated:
@@ -11,6 +12,7 @@ def unauthenticated_user(view_func):
 
 	return wrapper_func
 
+# Decorator for Blocking Non-Admins from proceeding
 def admin_user(view_fn):
     def wrapper_fn(request, *args, **kwargs):
         if request.user.is_admin or None:

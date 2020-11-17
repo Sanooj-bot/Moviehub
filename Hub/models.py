@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 
+# Movie Database
 class Movies(models.Model):
     moviename = models.CharField(max_length=30)
     movie_heading = models.CharField(max_length=60)
@@ -9,8 +10,9 @@ class Movies(models.Model):
     date_of_start = models.DateField(null=True,blank=True)
     date_of_end = models.DateField(null=True,blank=True)
 
-    def __str__(self):
+    def __str__(self): # Show in Database by Movie name
         return self.moviename
+# Manager for the User 
 class UserManager(BaseUserManager):
     def create_user(self, email, username, first_name, last_name, phone, password = None):
         if not email:
@@ -34,8 +36,8 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
-    def create_superuser(self, email, username, first_name, last_name, phone, password = None):
 
+    def create_superuser(self, email, username, first_name, last_name, phone, password = None):
         user = self.create_user(
             email = self.normalize_email(email),
             password = password,
@@ -50,7 +52,7 @@ class UserManager(BaseUserManager):
         user.is_superuser = True
         user.save(using=self._db)
         return user
-
+# Abstract User
 class User(AbstractBaseUser):
     email = models.EmailField(verbose_name="email",max_length=254,unique=True)
     username = models.CharField(max_length=20,unique=True)
@@ -74,6 +76,8 @@ class User(AbstractBaseUser):
         return self.is_admin
     def has_module_perms(self,app_lebel):
         return True
+
+# Database for the seat. 
 class Booking(models.Model):
     Movie_Name = models.CharField(max_length=25,blank=True)
     Date_Of_Show = models.DateField(null=True, blank=True)
@@ -137,6 +141,7 @@ class Booking(models.Model):
     J4 = models.BooleanField(default = False)
     J5 = models.BooleanField(default = False)
 
+# Model for storing Booked Tickets.
 class Ticket(models.Model):
     Name = models.CharField(max_length=254)
     Number = models.IntegerField()

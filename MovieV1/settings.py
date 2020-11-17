@@ -111,16 +111,18 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.facebook.FacebookOAuth2',
-
     'django.contrib.auth.backends.ModelBackend',
 )
+
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
 
+#Twitter
 SOCIAL_AUTH_TWITTER_KEY = 'XFmvMNaqc1DeahXXqdkeMrh'
 SOCIAL_AUTH_TWITTER_SECRET = 'cUJYAKlof6YkJCt6WviUcQwSKm9BgEtmhPeApARumazdMr8j'
 
+#Facebook
 SOCIAL_AUTH_FACEBOOK_KEY = '7676505071308'
 SOCIAL_AUTH_FACEBOOK_SECRET = '0c2796774475d0aba7a0d1e529712'
 
@@ -145,8 +147,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-
+# Setting Manual database as User Model instead of Djangos 
 AUTH_USER_MODEL='Hub.User'
+
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True  
@@ -156,9 +159,9 @@ EMAIL_HOST_USER = 'moviehub14@gmail.com'
 EMAIL_HOST_PASSWORD = 'plzzdont' 
 
 #Captcha
-
 GOOGLE_RECAPTCHA_SECRET_KEY = '6Lfwm9EZAAAAACrZBjCTNxCcZtulfqILDuzOnM'
 
 CSRF_COOKIE_DOMAIN = None
+# Stripe Keys
 STRIPE_PUBLIC_KEY = 'pk_test_51HX1ZGDhYPfk6E32O6zAWJFoKS1jPluZWkrlrjNxMGTcjbIAfJBKXzH2jgaIr9u7ePFncYIeC37JorQCLKBJFq6i004USf9nuR'
 STRIPE_PRIVATE_KEY = 'sk_test_51HX1ZGDhYPfk6E32YUs80tj1FeCnHISEMSSPIGOG1KQzAIXTOQCbIU5w0JdUE90OBSSqgAZoxxFKFKmcD54gxzRW00ShJ1oM2l'

@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 from Hub.models import User, Movies, Booking
 
+# User Sign Up Form. * If warning showed on Password1 and phone, It is because of the use of regex in it. 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control mb-2 mr-sm-2','placeholder':'FirstName'}),max_length=20, required=True)
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control mb-2 mr-sm-2','placeholder':'LastName'}),max_length=15, required=True)
@@ -16,15 +17,19 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2','phone')
 
+# Update form for User.
 class User_Form(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name','is_admin')
 
+# Update form for Movie.
 class Movie_form(forms.ModelForm):
     class Meta:
         model = Movies
         fields = ('__all__')
+
+# Movie Creation form
 class Create_Movie(forms.ModelForm):
     date_of_start = forms.DateField(widget=forms.DateInput(attrs={'name':'dos','class':'datepicker1','placeholder':'DateOfStart'}), required=True)
     date_of_end = forms.DateField(widget=forms.DateInput(attrs={'name':'doe','class':'datepicker2','placeholder':'DateOfEnd'}), required=True)
@@ -35,7 +40,10 @@ class Create_Movie(forms.ModelForm):
     class Meta:
         model = Movies
         fields = ('__all__')
+
+# Seat Updateing Form
 class Booking_Form(forms.ModelForm):
+    # All the seats Listed 
     A1 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'A1'} ),required=False)
     A2 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'A2'} ),required=False)
     A3 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'A3'} ),required=False)
@@ -64,13 +72,13 @@ class Booking_Form(forms.ModelForm):
     E2 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'E2'} ),required=False)
     E3 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'E3'} ),required=False)
     E4 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'E4'} ),required=False)
-    E5 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'E4'} ),required=False)
+    E5 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'E5'} ),required=False)
 
     F1 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'F1'} ),required=False)
     F2 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'F2'} ),required=False)
     F3 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'F3'} ),required=False)
     F4 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'F4'} ),required=False)
-    F5 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'F4'} ),required=False)
+    F5 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'F5'} ),required=False)
 
     G1 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'G1'} ),required=False)
     G2 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'G2'} ),required=False)
@@ -82,13 +90,14 @@ class Booking_Form(forms.ModelForm):
     H2 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'H2'} ),required=False)
     H3 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'H3'} ),required=False)
     H4 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'H4'} ),required=False)
-    H5 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'H4'} ),required=False)
+    H5 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'H5'} ),required=False)
 
     I1 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'I1'} ),required=False)
     I2 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'I2'} ),required=False)
     I3 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'I3'} ),required=False)
     I4 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'I4'} ),required=False)
-    I5 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'I4'} ),required=False)
+    I5 = forms.BooleanField(widget=forms.CheckboxInput(attrs={'value':'I5'} ),required=False)
+
     class Meta:
         model = Booking
         fields = ('A1', 'A2', 'A3', 'A4', 'A5', 'B1', 'B2', 'B3', 'B4', 'B5', 'C1', 'C2', 'C3', 'C4', 'C5',
