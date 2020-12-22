@@ -215,6 +215,7 @@ def user_delete(request, pk):
 # Selectin Seat View
 @csrf_exempt
 def seat_select(request,pk):
+    select = Booking.objects.get(id = pk)
     data = Booking.objects.get(id = pk)
     form = Booking_Form(instance = data)
     if request.method == 'POST':
@@ -234,7 +235,7 @@ def seat_select(request,pk):
                 p = Ticket.objects.create(Name = name, Number = number, Seats = seats)
                 return True
             return redirect('pay')
-    context ={'form':form, } 
+    context ={'form':form, 'select': select} 
     return render(request, "seat.html", context)
 
 # Create Movie page
@@ -250,9 +251,9 @@ def create_movie(request):
             name = form.cleaned_data['moviename']
             show = DOE - DOS
             shows = show.days
-            for i in range(shows):
-                DOS += datetime.timedelta(days = 1)
+            for i in range(shows+1):
                 p = Booking.objects.create(Movie_Name = name, Date_Of_Show = DOS) # Creating Seats for each day.
+                DOS += datetime.timedelta(days = 1)
             form.save()
             return redirect('movielist')
     else:

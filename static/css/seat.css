@@ -1,0 +1,29 @@
+
+input[type=checkbox] {
+  display:none;
+}
+input[type=checkbox] + label
+{
+  background-image: url( 'icons/icons1.png' );
+  height: 80px;
+  width: 80px;
+  display:inline-block;
+  padding: 0 0 0 0px;
+}
+ 
+input[type=checkbox]:checked + label
+{
+  background-image: url( 'icons/icons2.png');
+  height: 80px;
+  width: 80px;
+  display:inline-block;
+  padding: 0 0 0 0px;
+}
+input[type=checkbox]:disabled + label
+{
+  background-image: url("icons/icons3.png");
+  height: 80px;
+  width: 80px;
+  display:inline-block;
+  padding: 0 0 0 0px;
+}

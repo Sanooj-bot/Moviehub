@@ -11,7 +11,11 @@
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  </head>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="/resources/demos/style.css">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-warning">
     <a class="navbar-brand" href="#">MOVIEHUB</a>
@@ -53,25 +57,20 @@
     <div class="text-center">
       <form method="POST" enctype="multipart/form-data"> 
         {% csrf_token %}
-        <input type="text" name="date" class="disableFuturedate">
+        <input name="date" type="text" id="date_ex" >
         <button id="buy_now_btn" class="btn btn-primary">Book Now</button>
       </form> 
+      <p>{{data.date_of_end|date:"Y,m,d"}}</p>
       <script>
-        $(document).ready(function (){
-        $('.disableFuturedate').datepicker({
-        format: 'mm/dd/yyyy'
-        autoclose:true,
-    
-        }).on('changeDate', function (ev) {
-          $(this).datepicker('hide');
+        $(function() {
+          $( "#date_ex" ).datepicker({
+          showAnim: "fold",
+          dateFormat: "yy-mm-dd",
+          minDate: new Date({{data.date_of_start|date:"Y,m-1,d"}}),
+          maxDate: new Date({{data.date_of_end|date:"Y,m-1,d"}}),
         });
-        $('.disableFuturedate').keyup(function () {
-          if (this.value.match(/[^0-9]/g)) {
-              this.value = this.value.replace(/[^0-9^-]/g, '');
-            }
-          });
-        });
-      </script>
+      });
+  </script>
     </div>
   </div>
   </body>

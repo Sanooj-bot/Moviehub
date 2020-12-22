@@ -1,17 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-    </head>
-    <body>
-        <form method="POST" enctype="multipart/form-data"> 
-            {% csrf_token %} 
-            {{ form.moviename }}
-            {{ form.movie_heading }}
-            {{ form.movie_review }}
-            {{ form.movie_image }}
-            {{ form.date_of_start }}
-            {{ form.date_of_end }}
-            <input type="submit" value="Submit"> 
-        </form>
-    </body> 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script>
+  $(function() {
+    $( "#date_ex" ).datepicker({
+    showAnim: "fold",
+    dateFormat: "yy-mm-dd"
+});
+    $( "#date_ox" ).datepicker({
+    showAnim: "fold",
+    dateFormat: "yy-mm-dd"
+});
+  });
+  </script>
+
+<style>
+.ui-datepicker {
+  width: 17em;
+  padding: .2em .2em 0;
+  display: none;
+    background:#846733;  
+}
+.ui-datepicker .ui-datepicker-title {
+  margin: 0 2.3em;
+  line-height: 1.8em;
+  text-align: center;
+    color:#FFFFFF;
+    background:#846733;  
+}
+.ui-datepicker table {
+  width: 100%;
+  font-size: .7em;
+  border-collapse: collapse;
+    font-family:verdana;
+  margin: 0 0 .4em;
+    color:#000000;
+    background:#FDF8E4;    
+}
+.ui-datepicker td {
+
+  border: 0;
+  padding: 1px;
+
+    
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+  display: block;
+  padding: .8em;
+  text-align: right;
+  text-decoration: none;
+}
+</style>
+  
+</head>
+<body>
+ <form method="POST" enctype="multipart/form-data" id = "form1">
+    {% csrf_token %} 
+    {{ form.moviename }}
+    {{ form.movie_heading }}
+    {{ form.movie_review }}
+    {{ form.movie_image }}
+    {{ form.date_of_start }}
+    {{ form.date_of_end }}
+    <input type="submit" value="Submit"> 
+ <form>
+ 
+</body>
 </html>
+
+            
